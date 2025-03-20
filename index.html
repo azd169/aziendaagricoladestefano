@@ -39,7 +39,7 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="data/Particelleterreni_2.js"></script>
+        <script src="data/Particelleterreni_1.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
@@ -105,33 +105,8 @@
         });
         layer_ESRISatellite_0;
         map.addLayer(layer_ESRISatellite_0);
-        map.createPane('pane_GoogleLabels_1');
-        map.getPane('pane_GoogleLabels_1').style.zIndex = 401;
-        var layer_GoogleLabels_1 = L.tileLayer('https://mt1.google.com/vt/lyrs=h&x={x}&y={y}&z={z}', {
-            pane: 'pane_GoogleLabels_1',
-            opacity: 1.0,
-            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
-            minZoom: 1,
-            maxZoom: 28,
-            minNativeZoom: 0,
-            maxNativeZoom: 20
-        });
-        layer_GoogleLabels_1;
-        map.addLayer(layer_GoogleLabels_1);
-        function pop_Particelleterreni_2(feature, layer) {
+        function pop_Particelleterreni_1(feature, layer) {
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lowerCorner'] !== null ? autolinker.link(String(feature.properties['lowerCorner']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['upperCorner'] !== null ? autolinker.link(String(feature.properties['upperCorner']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Referenza'] !== null ? autolinker.link(String(feature.properties['Referenza']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
                     <tr>\
                         <th scope="row">Comune</th>\
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -188,9 +163,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Particelleterreni_2_0() {
+        function style_Particelleterreni_1_0() {
             return {
-                pane: 'pane_Particelleterreni_2',
+                pane: 'pane_Particelleterreni_1',
                 opacity: 1,
                 color: 'rgba(228,26,28,1.0)',
                 dashArray: '',
@@ -201,20 +176,20 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Particelleterreni_2');
-        map.getPane('pane_Particelleterreni_2').style.zIndex = 402;
-        map.getPane('pane_Particelleterreni_2').style['mix-blend-mode'] = 'normal';
-        var layer_Particelleterreni_2 = new L.geoJson(json_Particelleterreni_2, {
+        map.createPane('pane_Particelleterreni_1');
+        map.getPane('pane_Particelleterreni_1').style.zIndex = 401;
+        map.getPane('pane_Particelleterreni_1').style['mix-blend-mode'] = 'normal';
+        var layer_Particelleterreni_1 = new L.geoJson(json_Particelleterreni_1, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Particelleterreni_2',
-            layerName: 'layer_Particelleterreni_2',
-            pane: 'pane_Particelleterreni_2',
-            onEachFeature: pop_Particelleterreni_2,
-            style: style_Particelleterreni_2_0,
+            dataVar: 'json_Particelleterreni_1',
+            layerName: 'layer_Particelleterreni_1',
+            pane: 'pane_Particelleterreni_1',
+            onEachFeature: pop_Particelleterreni_1,
+            style: style_Particelleterreni_1_0,
         });
-        bounds_group.addLayer(layer_Particelleterreni_2);
-        map.addLayer(layer_Particelleterreni_2);
+        bounds_group.addLayer(layer_Particelleterreni_1);
+        map.addLayer(layer_Particelleterreni_1);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -227,27 +202,27 @@
         .title += 'Search for a place';
         setBounds();
         var i = 0;
-        layer_Particelleterreni_2.eachLayer(function(layer) {
+        layer_Particelleterreni_1.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Particella'] !== null?String('<div style="color: #ffffff; font-size: 12pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Particella']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Particelleterreni_2'});
+            layer.bindTooltip((layer.feature.properties['Particella'] !== null?String('<div style="color: #ffffff; font-size: 12pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Particella']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Particelleterreni_1'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
               addLabel(layer, i);
               i++;
         });
-        resetLabels([layer_Particelleterreni_2]);
+        resetLabels([layer_Particelleterreni_1]);
         map.on("zoomend", function(){
-            resetLabels([layer_Particelleterreni_2]);
+            resetLabels([layer_Particelleterreni_1]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Particelleterreni_2]);
+            resetLabels([layer_Particelleterreni_1]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Particelleterreni_2]);
+            resetLabels([layer_Particelleterreni_1]);
         });
         </script>
     </body>
