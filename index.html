@@ -39,11 +39,11 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="data/Particelleterreni_1.js"></script>
+        <script src="data/ParticelleTerreni_2.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[38.09259089774632,15.730533245564832],[38.10075354618884,15.741292129048627]]);
+        }).fitBounds([[38.09463523251455,15.734428098943656],[38.09871655673581,15.739807540685554]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -92,68 +92,93 @@
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-        map.createPane('pane_ESRISatellite_0');
-        map.getPane('pane_ESRISatellite_0').style.zIndex = 400;
-        var layer_ESRISatellite_0 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            pane: 'pane_ESRISatellite_0',
+        map.createPane('pane_GoogleSatellite_0');
+        map.getPane('pane_GoogleSatellite_0').style.zIndex = 400;
+        var layer_GoogleSatellite_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleSatellite_0',
             opacity: 1.0,
-            attribution: '',
+            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
             minZoom: 1,
             maxZoom: 28,
             minNativeZoom: 0,
             maxNativeZoom: 20
         });
-        layer_ESRISatellite_0;
-        map.addLayer(layer_ESRISatellite_0);
-        function pop_Particelleterreni_1(feature, layer) {
+        layer_GoogleSatellite_0;
+        map.addLayer(layer_GoogleSatellite_0);
+        map.createPane('pane_GoogleLabels_1');
+        map.getPane('pane_GoogleLabels_1').style.zIndex = 401;
+        var layer_GoogleLabels_1 = L.tileLayer('https://mt1.google.com/vt/lyrs=h&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleLabels_1',
+            opacity: 1.0,
+            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_GoogleLabels_1;
+        map.addLayer(layer_GoogleLabels_1);
+        function pop_ParticelleTerreni_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Comune</th>\
-                        <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Sezione</th>\
-                        <td class="visible-with-data" id="Sezione">' + (feature.properties['Sezione'] !== null ? autolinker.link(String(feature.properties['Sezione']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Sezione'] !== null ? autolinker.link(String(feature.properties['Sezione']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Foglio</th>\
-                        <td class="visible-with-data" id="Foglio">' + (feature.properties['Foglio'] !== null ? autolinker.link(String(feature.properties['Foglio']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Foglio'] !== null ? autolinker.link(String(feature.properties['Foglio']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Particella</th>\
-                        <td class="visible-with-data" id="Particella">' + (feature.properties['Particella'] !== null ? autolinker.link(String(feature.properties['Particella']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Particella'] !== null ? autolinker.link(String(feature.properties['Particella']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Area (m2)</th>\
-                        <td class="visible-with-data" id="Area (m2)">' + (feature.properties['Area (m2)'] !== null ? autolinker.link(String(feature.properties['Area (m2)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Area (m2)'] !== null ? autolinker.link(String(feature.properties['Area (m2)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Altitudine media (m)</th>\
-                        <td class="visible-with-data" id="Altitudine media (m)">' + (feature.properties['Altitudine media (m)'] !== null ? autolinker.link(String(feature.properties['Altitudine media (m)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Altitudine media (m)'] !== null ? autolinker.link(String(feature.properties['Altitudine media (m)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Altitudine min (m)</th>\
-                        <td class="visible-with-data" id="Altitudine min (m)">' + (feature.properties['Altitudine min (m)'] !== null ? autolinker.link(String(feature.properties['Altitudine min (m)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Altitudine min (m)'] !== null ? autolinker.link(String(feature.properties['Altitudine min (m)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Altitudine max (m)</th>\
-                        <td class="visible-with-data" id="Altitudine max (m)">' + (feature.properties['Altitudine max (m)'] !== null ? autolinker.link(String(feature.properties['Altitudine max (m)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Altitudine max (m)'] !== null ? autolinker.link(String(feature.properties['Altitudine max (m)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Pendenza media (%)</th>\
-                        <td class="visible-with-data" id="Pendenza media (%)">' + (feature.properties['Pendenza media (%)'] !== null ? autolinker.link(String(feature.properties['Pendenza media (%)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Pendenza media (%)'] !== null ? autolinker.link(String(feature.properties['Pendenza media (%)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Pendenza min (%)</th>\
-                        <td class="visible-with-data" id="Pendenza min (%)">' + (feature.properties['Pendenza min (%)'] !== null ? autolinker.link(String(feature.properties['Pendenza min (%)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Pendenza min (%)'] !== null ? autolinker.link(String(feature.properties['Pendenza min (%)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Pendenza max (%)</th>\
-                        <td class="visible-with-data" id="Pendenza max (%)">' + (feature.properties['Pendenza max (%)'] !== null ? autolinker.link(String(feature.properties['Pendenza max (%)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Pendenza max (%)'] !== null ? autolinker.link(String(feature.properties['Pendenza max (%)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Esposizione</th>\
-                        <td class="visible-with-data" id="Esposizione">' + (feature.properties['Esposizione'] !== null ? autolinker.link(String(feature.properties['Esposizione']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['Esposizione'] !== null ? autolinker.link(String(feature.properties['Esposizione']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Altezza vegetazione media (m)</th>\
+                        <td>' + (feature.properties['Altezza vegetazione media (m)'] !== null ? autolinker.link(String(feature.properties['Altezza vegetazione media (m)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Altezza vegetazione min (m)</th>\
+                        <td>' + (feature.properties['Altezza vegetazione min (m)'] !== null ? autolinker.link(String(feature.properties['Altezza vegetazione min (m)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Altezza vegetazione max (m)</th>\
+                        <td>' + (feature.properties['Altezza vegetazione max (m)'] !== null ? autolinker.link(String(feature.properties['Altezza vegetazione max (m)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -163,9 +188,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Particelleterreni_1_0() {
+        function style_ParticelleTerreni_2_0() {
             return {
-                pane: 'pane_Particelleterreni_1',
+                pane: 'pane_ParticelleTerreni_2',
                 opacity: 1,
                 color: 'rgba(228,26,28,1.0)',
                 dashArray: '',
@@ -176,20 +201,20 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Particelleterreni_1');
-        map.getPane('pane_Particelleterreni_1').style.zIndex = 401;
-        map.getPane('pane_Particelleterreni_1').style['mix-blend-mode'] = 'normal';
-        var layer_Particelleterreni_1 = new L.geoJson(json_Particelleterreni_1, {
+        map.createPane('pane_ParticelleTerreni_2');
+        map.getPane('pane_ParticelleTerreni_2').style.zIndex = 402;
+        map.getPane('pane_ParticelleTerreni_2').style['mix-blend-mode'] = 'normal';
+        var layer_ParticelleTerreni_2 = new L.geoJson(json_ParticelleTerreni_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Particelleterreni_1',
-            layerName: 'layer_Particelleterreni_1',
-            pane: 'pane_Particelleterreni_1',
-            onEachFeature: pop_Particelleterreni_1,
-            style: style_Particelleterreni_1_0,
+            dataVar: 'json_ParticelleTerreni_2',
+            layerName: 'layer_ParticelleTerreni_2',
+            pane: 'pane_ParticelleTerreni_2',
+            onEachFeature: pop_ParticelleTerreni_2,
+            style: style_ParticelleTerreni_2_0,
         });
-        bounds_group.addLayer(layer_Particelleterreni_1);
-        map.addLayer(layer_Particelleterreni_1);
+        bounds_group.addLayer(layer_ParticelleTerreni_2);
+        map.addLayer(layer_ParticelleTerreni_2);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -202,27 +227,27 @@
         .title += 'Search for a place';
         setBounds();
         var i = 0;
-        layer_Particelleterreni_1.eachLayer(function(layer) {
+        layer_ParticelleTerreni_2.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Particella'] !== null?String('<div style="color: #ffffff; font-size: 12pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Particella']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Particelleterreni_1'});
+            layer.bindTooltip((layer.feature.properties['Particella'] !== null?String('<div style="color: #ffffff; font-size: 13pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Particella']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_ParticelleTerreni_2'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
               addLabel(layer, i);
               i++;
         });
-        resetLabels([layer_Particelleterreni_1]);
+        resetLabels([layer_ParticelleTerreni_2]);
         map.on("zoomend", function(){
-            resetLabels([layer_Particelleterreni_1]);
+            resetLabels([layer_ParticelleTerreni_2]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Particelleterreni_1]);
+            resetLabels([layer_ParticelleTerreni_2]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Particelleterreni_1]);
+            resetLabels([layer_ParticelleTerreni_2]);
         });
         </script>
     </body>
